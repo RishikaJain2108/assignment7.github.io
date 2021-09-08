@@ -1,0 +1,80 @@
+body{
+    height:100vh;
+    font-family:helvetica;
+    background-repeat: no-repeat;
+    background-image: url("https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2020/05/21/Pictures/_037138a2-9b47-11ea-a010-c71373fc244b.jpg");
+    background-size:cover;
+    display:flex;
+    justify-content: space space-evenly;
+    align-items: center;
+}
+p{
+    margin: 5px;
+    color:rgb(230, 59, 144);
+    font-family: 'Lobster', cursive;
+}
+#wrapper{
+    background-color:#F6A9A9;
+    width:300px;
+    text-align:center;
+    border-radius:10px;
+}
+#info{
+    width:200px;
+    text-align:center;
+    background:rgba(256,256,256,.6);
+    border-radius:10px;
+}
+div{
+    margin:10px auto;
+}
+input{
+    border:none;
+    margin:10px auto;
+    width:200px;
+    height:30px;
+    text-align:center;
+    font-size:25px;
+    padding:5px;
+    background-color:#FFF47D;
+    border-radius:10px;
+    font-style: inherit;
+}
+input:hover{
+    background-color: rgb(64, 167, 46);
+    color: greenyellow;
+}
+button{
+    color:blue;
+    border:none;
+    margin:auto;
+    width:215px;
+    height:40px;
+    text-align:center;
+    font-size:25px;
+    padding:5px;
+    border-radius:10px;
+}
+button:hover{
+    background-color:#FFBF86;
+    width: 218px;
+    height: 42px;
+}
+#location{
+    font-size:20px;
+}
+#time{
+    font-size:20px;
+}
+#temp{
+    font-size:30px;
+}
+#minmax{
+    font-size:15px;
+}
+#weather{
+    font-size:20px;
+}
+#speed{
+    font-size:20px;
+}

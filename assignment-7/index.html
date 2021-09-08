@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script src="https://kit.fontawesome.com/4cf6001a98.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="C:\Users\HP\Desktop\web development\assignment-7\style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<style>
+  body{
+      height:100vh;
+      font-family:helvetica;
+      background-repeat: no-repeat;
+      background-image: url("https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2020/05/21/Pictures/_037138a2-9b47-11ea-a010-c71373fc244b.jpg");
+      background-size:cover;
+      display:flex;
+      justify-content: space space-evenly;
+      align-items: center;
+  }
+  p{
+      margin: 5px;
+      color:rgb(230, 59, 144);
+      font-family: 'Lobster', cursive;
+  }
+  #wrapper{
+      background-color:#F6A9A9;
+      width:300px;
+      text-align:center;
+      border-radius:10px;
+  }
+  #info{
+      width:200px;
+      text-align:center;
+      background:rgba(256,256,256,.6);
+      border-radius:10px;
+  }
+  div{
+      margin:10px auto;
+  }
+  input{
+      border:none;
+      margin:10px auto;
+      width:200px;
+      height:30px;
+      text-align:center;
+      font-size:25px;
+      padding:5px;
+      background-color:#FFF47D;
+      border-radius:10px;
+      font-style: inherit;
+  }
+  input:hover{
+      background-color: rgb(64, 167, 46);
+      color: greenyellow;
+  }
+  button{
+      color:blue;
+      border:none;
+      margin:auto;
+      width:215px;
+      height:40px;
+      text-align:center;
+      font-size:25px;
+      padding:5px;
+      border-radius:10px;
+  }
+  button:hover{
+      background-color:#FFBF86;
+      width: 218px;
+      height: 42px;
+  }
+  #location{
+      font-size:20px;
+  }
+  #time{
+      font-size:20px;
+  }
+  #temp{
+      font-size:30px;
+  }
+  #minmax{
+      font-size:15px;
+  }
+  #weather{
+      font-size:20px;
+  }
+  #speed{
+      font-size:20px;
+  }
+
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <input type="text" placeholder="Enter location"><br>
+        <button id="btn" type="submit"><i class="fas fa-search-location"></i></button>
+        <div id="info">
+            <p id="location"></p>
+            <p id="time"></p>
+            <p id="temp"></p>
+            <p id="minmax"></p>
+            <p id="weather"></p>
+        </div>
+    </div>
+    <script src="C:\Users\HP\Desktop\web development\assignment-7\app.js"></script>
+    <script>let text=document.querySelector("input");
+    let btn=document.getElementById("btn");
+    let weather=document.getElementById("weather");
+    let loc=document.getElementById("location");
+    let temp=document.getElementById("temp");
+    let minmax=document.getElementById("minmax");
+    let time=document.getElementById("time");
+    start();
+    function start(){
+        getweather("mohali")
+    }
+    btn.addEventListener("click",(e)=>{
+        e.preventDefault();
+        let input=text.value;
+        getweather(input);
+        text.value="";
+    });
+    function getweather(input){
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=cc7b365cdf72c6b1736b020dc6c87432`)
+        .then((result)=>{
+            return result.json()
+        })
+        .then((data)=>{
+            let txt=data.weather[0].description;
+            weather.innerHTML=txt;
+            txt=data.sys.country;
+            loc.innerHTML=input.toUpperCase()+','+txt;
+
+            txt=parseInt(data.main.temp-273);
+            temp.innerHTML=txt+"*C";
+            txt=parseInt(data.main.temp_min-273);
+            let txt2=parseInt(data.main.temp_max-273);
+            minmax.innerHTML=txt+"*C(min) / "+txt2+"*C(max)";
+            txt=new Date(data.dt).toDateString();
+            time.innerHTML=txt;
+        })
+        .catch((err)=>{
+            alert("Enter a Valid Place");
+            console.log(err.message);
+        });
+    }
+</script>
+</body>
+</html>
